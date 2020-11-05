@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>Titre</title>
+        <link rel="stylesheet" href="css/bootstrap.min.css" />
+        <link rel="stylesheet" href="css/style.css" />
+    </head>
+
+    <body>
+    	<div class="container-fluid entete col-xs-12 col-sm-12 col-md-4 col-lg-4">
+    		<img src="images/goute.jpg" class="img-fluid goute" alt="Responsive image">   		
+
+    	</div> 
+
+    		<div class ="side-bar">
+				<img src="images/menu.png" class ="menu">
+
+				<div class ="social-links">
+					<img src="images/fb.png">
+					<img src="images/ig.png">
+					<img src="images/tw.png">
+				</div>
+
+				<div class ="useful-links">
+					<img src="images/share.png">
+					<img src="images/info.png">				
+				</div>
+			</div>
+    	<div class="container-fluid test"> 
+    		<div class="container article">
+    			<div class="row">
+    				<article class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+    					<h1> Mon premier article</h1>
+    						<p>Lorem Nam quibusdam, quos audio sapientes habitos in Graecia, placuisse opinor mirabilia quaedam (sed nihil est quod illi non persequantur argutiis): partim fugiendas esse nimias amicitias, ne necesse sit unum m Nam quibusdam, quos audio sapientes habitos in Graecia, placuisse opinor mirabilia quaedam (sed nihil est quod illi non persequantur argutiis): partim fugiendas e</p>
+    				</article>
+                    <article class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                        <h1> Mon premier article</h1>
+                            <p>Lorem Nam quibusdam, quos audio sapientes habitos in Graecia, placuisse opinor mirabilia quaedam (sed nihil est quod illi non persequantur argutiis): partim fugiendas esse nimias amicitias, ne necesse sit unumm Nam quibusdam, quos audio sapientes habitos in Graecia, placuisse opinor mirabilia quaedam (sed nihil est quod illi non persequantur argutiis): partim fugiendas e</p>
+                    </article>
+                    <article class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                        <h1> Mon premier article</h1>
+                            <p>Lorem Nam quibusdam, quos audio sapientes habitos in Graecia, placuisse opinor mirabilia quaedam (sed nihil est quod illi non persequantur argutiis): partim fugiendas esse nimias amicitias, ne necesse sit unumm Nam quibusdam, quos audio sapientes habitos in Graecia, placuisse opinor mirabilia quaedam (sed nihil est quod illi non persequantur argutiis): partim fugiendas e</p>
+                    </article>	
+    			</div>
+    		</div>    		
+    	</div>
+        <div class="container-fluid explication" >
+  
+<p>Luneffffffffffffffffffffffffffffffffffffffffffffffffff</p><p>{{TEST}}
+With the introduction of the Flask command line interface, one of the more annoying things you have to do during development is set the environment variables each time you work on your app, namely FLASK_ENV and FLASK_APP. Well, Flask has a way for you to handle those things in a way to where you only have to do it once. And through the same functionality, you can also add other environment variables for your project. In this article, I'll show you how to use python-dotenv to have your environment variables loaded and ready to go every time you run your app.</p>
+<p>The one package that makes this all work is <a href="https://github.com/theskumar/python-dotenv">python-dotenv</a></p>
+<h2>What We'll Build</h2>
+<p>I'm going to demo how this works through a very simple Flask app.</p>
+<p>Let's start by creating the directories and empty files we'll need. This is what our project directory will look like:</p>
+<p><code>demo/__init__.py
+demo/settings.py
+.env
+.flaskenv
+run.py</code></p>
+<p>This app won't do anything special. It'll just show us what configuration values we have.</p>
+<h2>Set Up The Project</h2>
+<p>To start, on the command line create a new virtual environment and install flask and python-dotenv. I use pipenv, so I can do this all in one step:</p>
+<p><code>bash
+pipenv install flask python-dotenv
+pipenv shell</code></p>
+<p>Next, in your demo/<strong>init</strong>.py, we'll need to create the basics of a Flask app, which means importing Flask, creating a application factory function (create_app), and instantiating Flask. Here's the code to do this. </p>
+<p>```python</p>
+<h1>demo/<strong>init</strong>.py</h1>
+<p>from flask import Flask </p>
+<p>def create_app():
+    app = Flask(<strong>name</strong>)</p>
+<pre><code>return app
+</code></pre>
+<p>```</p>
+<p>If you've worked with Flask at all, then you know exactly how this works.</p>
+<p>Next, let's add in a simple route so we know our app actually works.</p>
+<p>```python</p>
+<h1>demo/<strong>init</strong>.py</h1>
+<p>from flask import Flask </p>
+<p>def create_app():
+    app = Flask(<strong>name</strong>)</p>
+<pre><code>@app.route('/')
+def index():
+    return '&lt;h1&gt;Hey There!&lt;/h1&gt;'
+
+return app
+</code></pre>
+<p>```</p>
+<h2>Add FLASK_APP Environment Variable</h2>
+<p>Once we've done that, we can use the Flask CLI to run the app. To run the app, use the following command while in the top level directory of your project.</p>
+<p><code>bash
+flask run</code></p>
+<p>But when we do that, we already get an error!</p>
+<p><code>Error: Could not locate a Flask application. You did not provide the "FLASK_APP" environment variable, and a "wsgi.py" or "app.py" module was not found in the current directory.</code></p>
+<p>This is a common error though. Normally, to fix this, we would export the environment variable FLASK_APP to be equal to the name of our app directory like this:</p>
+<p><code>bash
+export FLASK_APP=demo</code></p>
+<p>But since we're using python-dotenv and we want to avoid the inconvenience of using the command line, we'll have this load automatically by putting it in one of our dot files.</p>
+<p>We have two dot files: .env and .flaskenv. We want to use .flaskenv for any Flask CLI configuration commands and use .env for our app configuration. </p>
+<p>We'll put our FLASK_APP enviornment variable inside of the .flaskenv file. </p></div></body></html>
