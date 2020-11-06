@@ -1,0 +1,6 @@
+
+* choisir un dossier qui contient le md et un pour le html
+
+* afficher la liste des fichiers dans les dossiers
+
+* pouvoir choisir le md et dans quel template l'incruster
